@@ -55,28 +55,19 @@ schedule:
 platforms:
   enabled: true                         # 是否启用热榜平台抓取
   sources:
-    - id: "toutiao"
-      name: "今日头条"
-    - id: "baidu"
-      name: "百度热搜"
+    # ⚔️ S级核心交易快讯 (短线资金点火的核心发源地)
+    - id: "cls-telegraph"
+      name: "财联社·电报"
     - id: "wallstreetcn-hot"
-      name: "华尔街见闻"
-    - id: "thepaper"
-      name: "澎湃新闻"
-    - id: "bilibili-hot-search"
-      name: "bilibili 热搜"
-    - id: "cls-hot"
-      name: "财联社热门"
-    - id: "ifeng"
-      name: "凤凰网"
-    - id: "tieba"
-      name: "贴吧"
-    - id: "weibo"
-      name: "微博"
-    - id: "douyin"
-      name: "抖音"
-    - id: "zhihu"
-      name: "知乎"
+      name: "华尔街见闻·快讯"
+    - id: "jin10"
+      name: "金十数据"
+    
+    # 🧠 A股/港股情绪大本营 (用于监控散户高潮Climax与拥挤度)
+    - id: "xueqiu"
+      name: "雪球"
+    - id: "gelonghui"
+      name: "格隆汇"
 
 
 
@@ -112,20 +103,44 @@ rss:
   # - 不配置：使用全局 freshness_filter.max_age_days（默认 3 天）
   # - 正整数：覆盖全局设置，只推送此天数内的文章
   # - 0：禁用此频道的新鲜度过滤，推送所有文章
-  feeds:
-    - id: "hacker-news"
-      name: "Hacker News"
-      url: "https://hnrss.org/frontpage"
-
-    - id: "ruanyifeng"
-      name: "阮一峰的网络日志"
-      url: "http://www.ruanyifeng.com/blog/atom.xml"
-      enabled: false                  # 禁用
-      # max_age_days: 3               # 示例：推送 3 天内的文章（更新较慢的博客）
-     
+feeds:
+    # ═══════════════════════════════════════════════════════════════
+    # --- 海外宏观与科技巨头映射 (Cross-market & Macro Drivers) ---
+    # ═══════════════════════════════════════════════════════════════
     - id: "yahoo-finance"
-      name: "雅虎财经"
+      name: "雅虎财经 (全球财报与异动)"
       url: "https://finance.yahoo.com/news/rssindex"
+
+    - id: "seeking-alpha"
+      name: "Seeking Alpha (美股科技巨头突发快讯)"
+      url: "https://seekingalpha.com/market_currents.xml"
+
+    - id: "cnbc-top"
+      name: "CNBC (全球地缘与美联储动向)"
+      url: "https://www.cnbc.com/id/100003114/device/rss/rss.html"
+
+    # ═══════════════════════════════════════════════════════════════
+    # --- 周期与大宗商品底牌 (Commodities & Supply Shocks) ---
+    # ═══════════════════════════════════════════════════════════════
+    - id: "investing-news"
+      name: "Investing.com (全球宏观与大宗周期)"
+      url: "https://www.investing.com/rss/news.rss"
+
+    - id: "oilprice"
+      name: "OilPrice (原油底层与供给断层预警)"
+      url: "https://oilprice.com/rss/main"
+
+    # ═══════════════════════════════════════════════════════════════
+    # --- 国内短线深度与政策挖掘 (A-Share Depth & Policy) ---
+    # ═══════════════════════════════════════════════════════════════
+    - id: "cls-depth"
+      name: "财联社 (深度产业链调研)"
+      url: "https://rsshub.rssforever.com/cls/depth/1000"
+
+    - id: "eastmoney-industry"
+      name: "东方财富 (买方行业研报)"
+      url: "https://rsshub.rssforever.com/eastmoney/report/industry"
+
 
     # 自定义源示例
     # - id: "custom-feed"
