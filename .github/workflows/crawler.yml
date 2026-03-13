@@ -38,6 +38,12 @@ on:
     - cron: "33 * * * *"
 
   workflow_dispatch:
+    inputs:
+      force_run:
+        description: '强制执行 (覆盖 config 的静默设置)'
+        required: true
+        type: boolean
+        default: true
 
 concurrency:
   group: crawler-${{ github.ref_name }}
@@ -166,4 +172,11 @@ jobs:
           S3_ENDPOINT_URL: ${{ secrets.S3_ENDPOINT_URL }}
           S3_REGION: ${{ secrets.S3_REGION }}
           GITHUB_ACTIONS: true
-        run: python -m trendradar
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ] && [ "${{ inputs.force_run }}" == "true" ]; then
+            echo "🚀 检测到手动触发，强制执行抓取和推送..."
+            # 常见的强制执行参数可能是 --force, --run-all, 或 --ignore-schedule
+            python -m trendradar --force
+          else
+            python -m trendradar
+          fi
